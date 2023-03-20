@@ -26,6 +26,6 @@ yarn create next-app nextjs-blog --example "https://github.com/vercel/next-learn
 - `Vercel` 模板列表：[https://github.com/vercel/next-learn](https://github.com/vercel/next-learn)
 - 如果创建报错，参考：[https://github.com/vercel/next-learn/blob/master/basics/errors/install.md](https://github.com/vercel/next-learn/blob/master/basics/errors/install.md)
 
-## 自定义 <html> 标签
+## 自定义 \<html\> 标签
 
-如果要自定义 <html> 标签，例如添加 lang 属性，可以通过创建 pages/_document.js 文件来实现，参阅：[https://nextjs.org/docs/advanced-features/custom-document](https://nextjs.org/docs/advanced-features/custom-document)。
+如果要自定义 \<html\> 标签，例如添加 lang 属性，可以通过创建 pages/_document.js 文件来实现，参阅：[https://nextjs.org/docs/advanced-features/custom-document](https://nextjs.org/docs/advanced-features/custom-document)。
