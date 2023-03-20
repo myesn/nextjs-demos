@@ -1,0 +1,23 @@
+<!-- index.html -->
+<html>
+  <body>
+    <div id="app"></div>
+
+    <!-- 
+      浏览器不理解开箱即用的 JSX，因此需要一个 JavaScript 编译器，例如 Babel，将 JSX 代码转换为常规 JavaScript。
+      此外，还需要通过将脚本类型更改为 type=text/jsx 来通知 Babel 要转换的代码。
+     -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.development.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.development.min.js"></script>
+
+    <script type="text/jsx">
+      const container = document.getElementById("app");
+      // Create a root.
+      const root = ReactDOM.createRoot(container);
+
+      // Initial render: Render an element to the root.
+      root.render(<h1>Develop. Preview. Ship. 🚀</h1>);
+    </script>
+  </body>
+</html>
