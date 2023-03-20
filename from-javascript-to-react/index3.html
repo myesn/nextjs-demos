@@ -21,8 +21,8 @@
 
       // Capitalize the React Component
       function Header({title}) {
-        console.log(title);
-        return (<h1>Develop. Preview. Ship. 🚀</h1>);
+        // 当处于“JSX 领域”时，可以将花括号视为进入“JavaScript 领域”的一种方式。可以在花括号内添加任何 JavaScript 表达式（计算结果为单个值的东西）
+        return (<h1>{title ? title: 'Default title'}</h1>);
       }
 
       function HomePage() {
@@ -30,6 +30,7 @@
           <div>
             {/* Nesting the Header component */}
             <Header title="React 💙" />
+            <Header />
           </div>
         );
       }
