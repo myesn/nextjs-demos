@@ -28,6 +28,10 @@
       function HomePage() {
         const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
 
+        function handleLikeClick() {
+          console.log('increment like count');
+        }
+
         return (
           <div>
             {/* Nesting the Header component */}
@@ -36,6 +40,9 @@
             <ul>
               {names.map((name) => (<li key={name}>{name}</li>))}
             </ul>
+
+            {/* 监听事件（在 React 中，事件名称是驼峰式的） */}
+            <button onClick={handleLikeClick}>Like</button>
           </div>
         );
       }
