@@ -26,11 +26,16 @@
       }
 
       function HomePage() {
+        const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+
         return (
           <div>
             {/* Nesting the Header component */}
             <Header title="React 💙" />
             <Header />
+            <ul>
+              {names.map((name) => (<li key={name}>{name}</li>))}
+            </ul>
           </div>
         );
       }
