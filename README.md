@@ -57,6 +57,63 @@ yarn create next-app nextjs-blog --example "https://github.com/vercel/next-learn
 
 还可以将客户端数据提取与静态生成或服务器端渲染一起使用。这意味着页面的某些部分可以完全由客户端 `JavaScript` 渲染。要了解更多信息，请查看 [Data Fetching](https://nextjs.org/docs/basic-features/data-fetching/client-side) 文档。
 
+### Static Generation
+
+Static Generation 简称 `SSG`，可以在 [with data](https://nextjs.org/docs/basic-features/pages#static-generation-with-data) 和 [without data](https://nextjs.org/docs/basic-features/pages#static-generation-with-data) 的情况下完成。
+
+`with data` 使用 [getStaticProps](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation) 生成静态数据，它是如何工作的？在 Next.js 中，当导出页面组件时，还可以导出一个名为 `getStaticProps` 的 `async` 函数。如果你这样做，那么：
+- getStaticProps 在生产中的构建时运行。
+- 在函数内部，可以获取外部数据并将其作为 `props` 发送到 `page`。
+
+例如：
+```js
+export default function Home(props) { ... }
+
+export async function getStaticProps() {
+  // Get external data from the file system, API, DB, etc.
+  const data = ...
+
+  // The value of the `props` key will be
+  //  passed to the `Home` component
+  return {
+    props: ...
+  }
+}
+```
+注意：在开发模式（development mode）下， `getStaticProps` 改为在每个请求上运行。
+
+当请求外部 API 时：
+```js
+export async function getStaticProps() {
+  // fetch post data from an external API endpoint
+  const res = await fetch('..');
+  return { props: { data: res.json() } };
+}
+```
+注意：Next.js polyfills [fetch()](https://nextjs.org/docs/basic-features/supported-browsers-features) 在客户端和服务器上。不需要导入（import）它。
+
+当查询数据库时：
+```js
+import someDatabaseSDK from 'someDatabaseSDK'
+
+const databaseClient = someDatabaseSDK.createClient(...)
+
+export async function getSortedPostsData() {
+  // fetch post data from a database
+  const items = databaseClient.query('SELECT posts...');
+  return { props: { items }};
+}
+```
+这是允许的，因为 `getStaticProps` 仅在服务器端运行。它永远不会在客户端运行。它甚至不会包含在浏览器的 JS 包中。这意味着可以编写直接查询数据库等代码，而无需将它们发送到浏览器。
+
+Development vs. Production：
+- 在 `development` 环境中（yarn dev ），`getStaticProps` 在每个请求（every request）上运行。
+- 在 `production` 环境中，`getStaticProps` 在构建时（build time）运行。但是，可以使用 [getStaticPaths](https://nextjs.org/docs/basic-features/data-fetching#getstaticpaths-static-generation) 返回的 [fallback 字段](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-false) 来增强此行为。
+
+`getStaicProps()` 只能从 [page](https://nextjs.org/docs/basic-features/pages) 中导出，不能从 `non-page` 文件中导出它。这种限制的原因之一是 `React` 需要在页面呈现之前拥有所有必需的数据。
+
+由于 `Static Generation` 只在构建时发生一次，因此它不适合频繁更新或根据每个用户请求更改的数据。
+
 ## 其他
 
 ### Markdown Metadata
@@ -69,7 +126,3 @@ title: 'x'
 date: '2023-03-21'
 ---
 ```
-
-### fetch()
-
-Next.js polyfills [fetch()](https://nextjs.org/docs/basic-features/supported-browsers-features) 在客户端和服务器上。不需要导入（import）它。
