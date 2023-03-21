@@ -29,3 +29,12 @@ yarn create next-app nextjs-blog --example "https://github.com/vercel/next-learn
 ## 自定义 `<html>` 标签
 
 如果要自定义 `<html>` 标签，例如添加 `lang` 属性，可以通过创建 `pages/_document.js` 文件来实现，参阅：[https://nextjs.org/docs/advanced-features/custom-document](https://nextjs.org/docs/advanced-features/custom-document)。
+
+## Styling Tips
+
+[https://nextjs.org/learn/basics/assets-metadata-css/styling-tips](https://nextjs.org/learn/basics/assets-metadata-css/styling-tips)
+
+- Using clsx library to toggle classes
+- Customizing PostCSS Config
+- Using Sass
+- Next.js's built-in CSS Support and CSS Modules
