@@ -69,3 +69,7 @@ title: 'x'
 date: '2023-03-21'
 ---
 ```
+
+### fetch()
+
+Next.js polyfills [fetch()](https://nextjs.org/docs/basic-features/supported-browsers-features) 在客户端和服务器上。不需要导入（import）它。
