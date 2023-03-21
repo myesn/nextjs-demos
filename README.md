@@ -135,7 +135,9 @@ export async function getServerSideProps(context) {
 
 ### Client-side rendering
 
-如果不需要预渲染数据，也可以使用以下策略（称为 [Client-side Rendering](https://nextjs.org/docs/basic-features/data-fetching#fetching-data-on-the-client-side)）：
+在获取数据时与 SEO 无关的私有、用户特定页面使用。
+
+如果不需要预渲染数据，可以使用以下策略（称为 [Client-side Rendering](https://nextjs.org/docs/basic-features/data-fetching#fetching-data-on-the-client-side)）：
 - 静态生成（预渲染）不需要外部数据的页面部分
 - 当页面加载时，使用 `JavaScript` 从客户端获取外部数据并填充其余部分。
 
