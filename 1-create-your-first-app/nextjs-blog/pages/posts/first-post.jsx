@@ -2,12 +2,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Head from 'next/head';
 import Script from 'next/script';
+import Layout from '../../components/layout';
 
 export default function FirstPost() {
   const title = 'First Post';
 
   return (
-    <>
+    <Layout>
       <Head>
         <title>{title}</title>
         {/* 
@@ -45,6 +46,6 @@ export default function FirstPost() {
       <h2>
         <Link href='/'>Back to home</Link>
       </h2>
-    </>
+    </Layout>
   );
 }
