@@ -48,11 +48,24 @@ yarn create next-app nextjs-blog --example "https://github.com/vercel/next-learn
 `Next.js` 的 [Pre-rendering](https://nextjs.org/docs/basic-features/pages#pre-rendering) 分为 [Static Generation](https://nextjs.org/docs/basic-features/pages#static-generation-recommended) 和 [Server-side Rendering](https://nextjs.org/docs/basic-features/pages#server-side-rendering) 两种形式, `Static Generation` 又分为 [with data](https://nextjs.org/docs/basic-features/pages#static-generation-with-data) 和 [without data](https://nextjs.org/docs/basic-features/pages#static-generation-with-data).
 
 两种预渲染形式的区别如下：
-  - 静态生成（推荐）：`HTML` 在构建时生成，并将在每个请求中重复使用。
-  - 服务器端呈现：`HTML` 是在每个请求上生成的。
+  - 静态生成（推荐）`ssg`：`HTML` 在构建时生成，并将在每个请求中重复使用。
+  - 服务器端呈现 `ssr`：`HTML` 是在每个请求上生成的。
 
 重要的是，`Next.js` 允许选择要为每个页面使用的预渲染形式。您可以通过对大多数页面使用静态生成并为其他页面使用服务器端呈现来创建 **“混合（hybird）” Next.js 应用程序**。
 
 出于性能原因，建议使用静态生成而不是服务器端呈现。静态生成的页面可以由 `CDN` 缓存，无需额外配置以提高性能。但是，在某些情况下，服务器端渲染可能是唯一的选择。
 
 还可以将客户端数据提取与静态生成或服务器端渲染一起使用。这意味着页面的某些部分可以完全由客户端 `JavaScript` 渲染。要了解更多信息，请查看 [Data Fetching](https://nextjs.org/docs/basic-features/data-fetching/client-side) 文档。
+
+## 其他
+
+### Markdown Metadata
+
+`Markdown` 文件顶部有一些元数据定义，其中包含 `title` 和 `date`，这被称为 `YAML Front Matter`，可以使用名为 [gray-matter](https://github.com/jonschlinkert/gray-matter) 的库对其进行解析。
+
+```markdown
+---
+title: 'x'
+date: '2023-03-21'
+---
+```
