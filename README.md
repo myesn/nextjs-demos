@@ -114,6 +114,46 @@ Development vs. Production：
 
 由于 `Static Generation` 只在构建时发生一次，因此它不适合频繁更新或根据每个用户请求更改的数据。
 
+### Server-side Rendering
+
+如果需要在请求时（request time）而不是在构建时（build time）获取数据，可以尝试服务器端渲染（Server-side Rendering），简称 `SSR`。
+
+要使用 [Server-side Rendering](https://nextjs.org/docs/basic-features/pages#server-side-rendering) ，需要从 `page` 导出 [getServerSideProps](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering) 而不是 [getStaticProps](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation)，如下：
+```js
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      // props for your component
+    },
+  };
+}
+```
+
+因为 `getServerSideProps` 在请求时（request time）被调用，所以它的参数 (`context`) 包含请求特定的参数。
+
+仅当需要预呈现其数据必须在请求时获取的页面时，才应使用 `getServerSideProps` 。第一个字节的时间 ([TTFB](https://web.dev/time-to-first-byte/)) 将比 `getStaticProps` 慢，因为服务器必须计算每个请求的结果，并且如果没有额外配置，[CDN](https://vercel.com/docs/edge-network/overview) 无法缓存结果。
+
+### Client-side rendering
+
+如果不需要预渲染数据，也可以使用以下策略（称为 [Client-side Rendering](https://nextjs.org/docs/basic-features/data-fetching#fetching-data-on-the-client-side)）：
+- 静态生成（预渲染）不需要外部数据的页面部分
+- 当页面加载时，使用 `JavaScript` 从客户端获取外部数据并填充其余部分。
+
+例如，此方法适用于用户仪表板页面。因为仪表板是私有的、特定于用户的页面，所以与 `SEO`无关，并且页面不需要 [预渲染（pre-rendered）](https://nextjs.org/docs/basic-features/pages#pre-rendering)。数据更新频繁，需要请求时取数据。
+
+`Next.js` 团队创建了一个名为 [SWR](https://swr.vercel.app/) 的用于数据获取的 `React hook`。如果您在客户端获取数据，强烈推荐使用。它处理缓存、重新验证、焦点跟踪、间隔重新获取等。这里不介绍细节，但简单示意一个示例用法：
+```js
+import useSWR from 'swr';
+
+function Profile() {
+  const { data, error } = useSWR('/api/user', fetch);
+
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
+  return <div>hello {data.name}!</div>;
+}
+```
+
 ## 其他
 
 ### Markdown Metadata
