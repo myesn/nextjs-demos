@@ -38,3 +38,7 @@ yarn create next-app nextjs-blog --example "https://github.com/vercel/next-learn
 - Customizing PostCSS Config
 - Using Sass
 - Next.js's built-in CSS Support and CSS Modules
+
+## Pre-rendering
+
+`Next.js` 的 [Pre-rendering](https://nextjs.org/docs/basic-features/pages#pre-rendering) 分为 [Static Generation](https://nextjs.org/docs/basic-features/pages#static-generation-recommended) 和 [Server-side Rendering](https://nextjs.org/docs/basic-features/pages#server-side-rendering), `Static Generation` 又分为 [with data](https://nextjs.org/docs/basic-features/pages#static-generation-with-data) 和 [without data](https://nextjs.org/docs/basic-features/pages#static-generation-with-data).
