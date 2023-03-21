@@ -1,0 +1,61 @@
+/* 
+    一组可以在多个组件中重复使用的 CSS 实用程序类（用于文本样式）。
+    可以在整个应用程序中重用这些实用程序类，甚至可以在 global.css 文件中使用实用程序类。
+    实用类(classes)指的是一种编写 CSS 选择器的方法，而不是一种方法（例如全局样式、CSS 模块、Sass 等）
+
+    utility-first CSS: https://tailwindcss.com/docs/utility-first
+
+ */
+
+.heading2Xl {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.05rem;
+  margin: 1rem 0;
+}
+
+.headingXl {
+  font-size: 2rem;
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: -0.05rem;
+  margin: 1rem 0;
+}
+
+.headingLg {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  margin: 1rem 0;
+}
+
+.headingMd {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.borderCircle {
+  border-radius: 9999px;
+}
+
+.colorInherit {
+  color: inherit;
+}
+
+.padding1px {
+  padding-top: 1px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listItem {
+  margin: 0 0 1.25rem;
+}
+
+.lightText {
+  color: #666;
+}
