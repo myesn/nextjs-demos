@@ -16,6 +16,8 @@
 
 [Dynamic Routes](docs/dynamic-routes.md)
 
+[API Routes](docs/api-routes.md)
+
 ## 其他
 
 [Markdown Metadata](docs/markdown-metadata.md)
