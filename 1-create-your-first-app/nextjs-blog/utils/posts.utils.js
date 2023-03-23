@@ -39,3 +39,49 @@ export function getSortedPostsData() {
     }
   });
 }
+
+/** 返回 posts 目录中的文件名列表（不包括 .md 后缀名） */
+export function getAllPostIds() {
+  const fileNames = fs.readdirSync(postsDirectory);
+
+  // Returns an array that looks like this:
+  // [
+  //   {
+  //     params: {
+  //       id: 'ssg-ssr'
+  //     }
+  //   },
+  //   {
+  //     params: {
+  //       id: 'pre-rendering'
+  //     }
+  //   }
+  // ]
+  /**
+   * 重要提示：返回的列表不仅仅是一个字符串数组——它必须是一个类似于上面注释的对象数组。
+   * 每个对象都必须有 params 键并包含一个带有 id 键的对象（因为我们在文件名中使用了 [id] ）。
+   * 否则， getStaticPaths 将失败。
+   */
+  return fileNames.map((fileName) => {
+    return {
+      params: {
+        id: fileName.replace(/\.md$/, ''),
+      },
+    };
+  });
+}
+
+/** 返回基于 id 的帖子数据 */
+export function getPostData(id) {
+  const fullPath = path.join(postsDirectory, `${id}.md`);
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+  // Use gray-matter to parse the post metadata section
+  const matterResult = matter(fileContents);
+
+  // Combine the data with the id
+  return {
+    id,
+    ...matterResult.data,
+  };
+}

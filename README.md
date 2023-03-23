@@ -14,6 +14,8 @@
 
 [Pre-rendering](docs/pre-rendering.md)
 
+[Dynamic Routes](docs/dynamic-routes.md)
+
 ## 其他
 
 [Markdown Metadata](docs/markdown-metadata.md)

@@ -4,6 +4,8 @@ import Head from 'next/head';
 import Script from 'next/script';
 import Layout from '../../components/layout';
 
+// 由于改为了 Dynamic Routes，所以这里移除 first-post.jsx 文件
+
 export default function FirstPost() {
   const title = 'First Post';
 
