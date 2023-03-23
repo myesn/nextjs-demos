@@ -18,6 +18,8 @@
 
 [API Routes](docs/api-routes.md)
 
+[Deploying](https://nextjs.org/learn/basics/deploying-nextjs-app)
+
 ## 其他
 
 [Markdown Metadata](docs/markdown-metadata.md)
